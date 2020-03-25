@@ -2,14 +2,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>EMDR Remote</title>
     <script src="js/emdr_controller.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/core.css">
+    <link href="css/core.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<div class="lightbar_container"></div>
+
+<div class="settings_form" id="settings_form">
+    <form name="settings">
+        <div class="row">
+            <label for="duration">Duration</label>
+            <input id="duration" type="text" value="120">
+        </div>
+        <div class="row">
+            <label for="color">Color</label>
+            <input id="color" type="text" value="cyan">
+        </div>
+        <div class="row">
+            <label for="mode">Mode</label>
+            <input name="mode" type="text" value="blink">
+        </div>
+        <button type="button" onclick="start()">Start</button>
+    </form>
+</div>
+
+</body>
+
+<div id="lightbar_holder">
+<div class="lightbar_container" id="lightbar_container"></div>
+
+
+<button type="button" onclick="stop()">Stop</button>
+</div>
 
 </body>
 

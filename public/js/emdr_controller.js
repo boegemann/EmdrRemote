@@ -9,6 +9,7 @@ const settings = {
 }
 
 const state = {
+    mode:"form",
     curPos: 0,
     direction: 1
 }
@@ -29,7 +30,7 @@ async function next() {
 
 
 function setBulbState(position, isOn) {
-    const lightbarNode = window.document.body.firstElementChild;
+    const lightbarNode = window.document.getElementById("lightbar_container")
     const bulbNode = lightbarNode.children.item(position);
     bulbNode.style.backgroundColor = isOn ? settings.background_color_on : settings.background_color_off;
 }
@@ -41,18 +42,32 @@ async function setUpLightbar() {
 
     const count = 20;
 
-    const lightbarNode = window.document.body.firstElementChild;
+    const lightbarNode = window.document.getElementById("lightbar_container")
 
     lightbarNode.innerHTML = "";
     for (let i = 0; i < settings.bulbCount; i++) {
         lightbarNode.append(createLightNode());
     }
 
-    while (true) {
+
+
+}
+
+async function start(){
+    settings.background_color_on = document.forms["settings"]["color"].value
+    document.getElementById("settings_form").style.display="none"
+    document.getElementById("lightbar_holder").style.display="inherit"
+    state.mode="lightbar"
+    while (state.mode==="lightbar") {
         await next();
         await sleep(settings.bulb_pause);
     }
+}
 
+async function stop(){
+    state.mode="form"
+    document.getElementById("settings_form").style.display="inherit"
+    document.getElementById("lightbar_holder").style.display="none"
 }
 
 function createLightNode() {
