@@ -1,0 +1,8 @@
+.light_bulb {
+    margin: 2px;
+    flex-grow: 1;
+}
+
+.lightbar_container {
+    display: flex;
+}
