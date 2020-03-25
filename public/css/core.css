@@ -6,3 +6,7 @@
 .lightbar_container {
     display: flex;
 }
+
+.lightbar_holder {
+    display: none;
+}

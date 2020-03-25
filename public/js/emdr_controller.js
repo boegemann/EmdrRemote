@@ -5,20 +5,21 @@ const settings = {
     height: "30px",
     bulb_pause: 10,
     edge_pause: 300,
-    mode:"blink`"
+    mode: "blink`",
+    duration: 10
 }
 
 const state = {
-    mode:"form",
+    mode: "form",
     curPos: 0,
     direction: 1
 }
 
 async function next() {
     setBulbState(state.curPos, false);
-    if (settings.mode === "blink"){
-        state.curPos=state.curPos===0?settings.bulbCount -1:0
-    }else{
+    if (settings.mode === "blink") {
+        state.curPos = state.curPos === 0 ? settings.bulbCount - 1 : 0
+    } else {
         state.curPos = state.curPos + state.direction;
     }
     setBulbState(state.curPos, true);
@@ -50,24 +51,31 @@ async function setUpLightbar() {
     }
 
 
-
 }
 
-async function start(){
-    settings.background_color_on = document.forms["settings"]["color"].value
-    document.getElementById("settings_form").style.display="none"
-    document.getElementById("lightbar_holder").style.display="inherit"
-    state.mode="lightbar"
-    while (state.mode==="lightbar") {
+async function start() {
+    settings.background_color_on = document.forms["settings"]["color"].value;
+    settings.duration = parseInt(document.forms["settings"]["duration"].value) * 1000;
+    settings.mode = document.forms["settings"]["mode"].value;
+
+    state.timeout = setTimeout(()=>{
+        stop()
+    },settings.duration)
+
+    document.getElementById("settings_form").style.display = "none"
+    document.getElementById("lightbar_holder").style.display = "inherit"
+    state.mode = "lightbar"
+    while (state.mode === "lightbar") {
         await next();
         await sleep(settings.bulb_pause);
     }
 }
 
-async function stop(){
-    state.mode="form"
-    document.getElementById("settings_form").style.display="inherit"
-    document.getElementById("lightbar_holder").style.display="none"
+async function stop() {
+    clearInterval(state.timeout)
+    state.mode = "form"
+    document.getElementById("settings_form").style.display = "inherit"
+    document.getElementById("lightbar_holder").style.display = "none"
 }
 
 function createLightNode() {
