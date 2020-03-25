@@ -1,8 +1,8 @@
 const settings = {
-    bulbCount: 30,
+    bulbCount: 25,
     background_color_on: "cyan",
     background_color_off: "white",
-    height: "20px",
+    height: "30px",
     bulb_pause: 10,
     edge_pause: 300,
     mode:"blink`"
