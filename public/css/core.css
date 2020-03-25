@@ -1,12 +1,78 @@
 .light_bulb {
     margin: 2px;
     flex-grow: 1;
+    border: 1px solid gray;
+    border-radius: 6px;
 }
 
 .lightbar_container {
     display: flex;
+    border: 2px solid black;
+    border-radius: 12px;
+    width:95%;
+    margin:auto;
+    padding:5px;
+    background-color: antiquewhite;
 }
 
 .lightbar_holder {
     display: none;
+}
+
+body {
+    text-align: center;
+}
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+.settings_form .row {
+    margin-bottom: 8px;
+}
+
+.settings_form {
+    margin-top: 40px;
+}
+
+.settings_form label {
+    width:190px;
+    display: inline-block;
+}
+
+button {
+    border-radius:42px;
+    border:1px solid #18ab29;
+    display:block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    padding:16px 39px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.btn_stop {
+    background-color:#a73f2d;
+}
+
+.btn_stop:hover {
+    background-color:#b34332;
+}
+
+.btn_start {
+    background-color:#44c767;
+}
+
+.btn_start:hover {
+    background-color:#5cbf2a;
+}
+
+
+.button:active {
+    position:relative;
+    top:1px;
 }

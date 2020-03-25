@@ -1,8 +1,8 @@
 const settings = {
-    bulbCount: 25,
+    bulbCount: 20,
     background_color_on: "cyan",
     background_color_off: "white",
-    height: "30px",
+    height: "50px",
     bulb_pause: 10,
     edge_pause: 300,
     mode: "blink`",
@@ -36,11 +36,15 @@ function setBulbState(position, isOn) {
     bulbNode.style.backgroundColor = isOn ? settings.background_color_on : settings.background_color_off;
 }
 
-
-async function setUpLightbar() {
+function resize(){
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    document.getElementById("lightbar_container").style.marginTop = (Math.floor(vh/2) - 20) + ""
+}
 
+async function setUpLightbar() {
+    resize()
+    window.onresize = resize;
     const count = 20;
 
     const lightbarNode = window.document.getElementById("lightbar_container")
@@ -50,6 +54,17 @@ async function setUpLightbar() {
         lightbarNode.append(createLightNode());
     }
 
+    for(var i = 0; i < CSS_COLOR_NAMES.length; i++) {
+        var opt = CSS_COLOR_NAMES[i];
+        var el = document.createElement("option");
+        var colorWithSpaces = opt.replace( /([A-Z])/g, " $1" );
+        var firstLetterRecapitalized = colorWithSpaces.charAt(0).toUpperCase() + colorWithSpaces.slice(1);
+        el.textContent = firstLetterRecapitalized
+        el.value = opt;
+        el.style.backgroundColor = opt;
+        document.getElementById("color").appendChild(el);
+    }
+    document.getElementById("color").value="Cyan"
 
 }
 
@@ -57,7 +72,10 @@ async function start() {
     settings.background_color_on = document.forms["settings"]["color"].value;
     settings.duration = parseInt(document.forms["settings"]["duration"].value) * 1000;
     settings.mode = document.forms["settings"]["mode"].value;
+    settings.bulb_pause = parseInt(document.forms["settings"]["bulb_pause"].value);
+    settings.edge_pause = parseInt(document.forms["settings"]["edge_pause"].value);
 
+    clearInterval(state.timeout)
     state.timeout = setTimeout(()=>{
         stop()
     },settings.duration)
