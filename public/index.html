@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>EMDR Remote</title>
-    <script src="js/colorPicker.js"></script>
-    <script src="js/emdr_controller.js"></script>
     <link href="css/core.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
+<script src="js/colorPicker.js"></script>
+<script src="js/emdr_controller.js"></script>
+
 <div class="settings_form" id="settings_form">
-    <h3>EDMR Remote</h3>
+    <h3>EMDR Remote</h3>
     <form name="settings">
         <div class="row">
             <label for="duration">Duration (seconds)</label>
@@ -37,6 +38,14 @@
         <div class="row">
             <label for="edge_pause">Time on edge bulb (ms)</label>
             <input id="edge_pause" type="text" value="300">
+        </div>
+        <div class="row">
+            <label for="soundOn">Play sound</label>
+            <input id="soundOn" type="checkbox" value="on">
+        </div>
+        <div class="row">
+            <label for="frequency">Frequency</label>
+            <input id="frequency" type="range" min="100" max="800">
         </div>
 
 
