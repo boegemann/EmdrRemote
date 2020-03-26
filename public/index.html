@@ -44,8 +44,8 @@
             <input id="soundOn" type="checkbox" value="on">
         </div>
         <div class="row">
-            <label for="frequency">Frequency</label>
-            <input id="frequency" type="range" min="100" max="800">
+            <label for="frequency">Sound Frequency (<span id="frequencyValue">400</span> hertz)</label>
+            <input id="frequency" type="range" min="100" max="800" value="400" onchange="frequencyChange()">
         </div>
 
 

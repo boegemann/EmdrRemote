@@ -28,13 +28,10 @@ async function next() {
     }
     setBulbState(state.curPos, true);
     if (state.curPos == settings.bulbCount - 1 || state.curPos == 0) {
-
-        state.direction = -state.direction;
-
         if (settings.soundOn) {
             playSound(state.direction, settings.duration)
         }
-
+        state.direction = -state.direction;
         await sleep(settings.edge_pause);
     }
 }
@@ -104,6 +101,10 @@ function initialiseSounds() {
 
 async function playSound(dir) {
     panner.pan.value = dir;
+}
+
+function frequencyChange(){
+    document.getElementById("frequencyValue").innerText =  parseInt(document.forms["settings"]["frequency"].value);
 }
 
 
